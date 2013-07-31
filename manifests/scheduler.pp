@@ -35,10 +35,16 @@ define disk::scheduler (
   $scheduler  = 'noop',
 ) {
 
-  exec { "disk_scheduler_for_${name}":
-    command => "echo ${scheduler} >  /sys/block/${name}/queue/scheduler",
-    path    => '/bin',
-    unless  => "test -d /sys/block/${name}/ && grep --quiet '\[${scheduler}\]' /sys/block/${name}/queue/scheduler"
+  $has_device = inline_template("<%= '${::blockdevices}'.include?('${name}') %>")
+
+  if $has_device == 'true' {
+    exec { "disk_scheduler_for_${name}":
+      command => "echo ${scheduler} >  /sys/block/${name}/queue/scheduler",
+      path    => '/bin:/usr/bin',
+      unless  => "test -d /sys/block/${name}/ && grep --quiet '\[${scheduler}\]' /sys/block/${name}/queue/scheduler"
+    }
+  } else {
+    notify { "Device ${name} not found": }
   }
 
 }
