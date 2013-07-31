@@ -1,0 +1,7 @@
+name 'evenup-disk'
+version '0.1.0'
+author 'Justin Lambert <jlambert@letsevenup.com>'
+license 'Apache'
+summary 'Configures disk parameters'
+description 'Configures disk parameters on Linux systems'
+project_page 'https://github.com/evenup/evenup-disk'
