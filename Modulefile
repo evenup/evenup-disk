@@ -1,5 +1,5 @@
 name 'evenup-disk'
-version '0.1.0'
+version '0.2.0'
 author 'Justin Lambert <jlambert@letsevenup.com>'
 license 'Apache'
 summary 'Configures disk parameters'
