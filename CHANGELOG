@@ -1,3 +1,4 @@
+20130902 v0.3.0
   Fix block device detection when devices > 1
 v0.2.0:
   Add device checking
