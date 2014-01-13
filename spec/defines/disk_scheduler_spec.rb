@@ -14,7 +14,6 @@ describe 'disk::scheduler', :type => :define do
     context 'invalid device' do
       let(:title) { 'sda' }
       it { should_not contain_exec('disk_scheduler_for_sda') }
-      it { should contain_notify('Device sda not found (devices: xvde1)') }
     end
 
   end
@@ -30,7 +29,6 @@ describe 'disk::scheduler', :type => :define do
     context 'invalid device' do
       let(:title) { 'sda' }
       it { should_not contain_exec('disk_scheduler_for_sda') }
-      it { should contain_notify('Device sda not found (devices: xvde1,xvdf)') }
     end
   end
 

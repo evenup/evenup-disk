@@ -43,8 +43,8 @@ define disk::scheduler (
       path    => '/bin:/usr/bin',
       unless  => "test -d /sys/block/${name}/ && grep --quiet '\[${scheduler}\]' /sys/block/${name}/queue/scheduler"
     }
-  } else {
-    notify { "Device ${name} not found (devices: ${::blockdevices})": }
+#  } else {
+#    notify { "Device ${name} not found (devices: ${::blockdevices})": }
   }
 
 }
