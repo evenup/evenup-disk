@@ -41,7 +41,7 @@ define disk::scheduler (
     exec { "disk_scheduler_for_${name}":
       command => "echo ${scheduler} >  /sys/block/${name}/queue/scheduler",
       path    => '/bin:/usr/bin',
-      unless  => "test -d /sys/block/${name}/ && grep --quiet '\[${scheduler}\]' /sys/block/${name}/queue/scheduler"
+      unless  => "test -d /sys/block/${name}/ && grep --quiet '\\[${scheduler}\\]' /sys/block/${name}/queue/scheduler"
     }
 #  } else {
 #    notify { "Device ${name} not found (devices: ${::blockdevices})": }
