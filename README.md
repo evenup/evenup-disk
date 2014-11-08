@@ -24,6 +24,10 @@ Configure xvde1 with the deadline scheduler:
 disk::scheduler { 'xvde1': scheduler => 'deadline' }
 ```
 
+Configure xvde1 with a readahead:
+```puppet
+disk::readahead { 'xvde1': readahead => 2048 }
+```
 
 Known Issues:
 -------------
