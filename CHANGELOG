@@ -1,3 +1,7 @@
+20141110 v0.4.0
+  Escape backslashes (idleyoungman)
+  Add disk scheduling persistence (JCotton1123)
+  Add readahead tuning (JCotton1123)
 20140113 v0.3.1
   Remove debug notify
 20130902 v0.3.0
