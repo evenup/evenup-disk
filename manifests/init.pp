@@ -30,11 +30,6 @@
 # * Justin Lambert <mailto:jlambert@letsevenup.com>
 # * Jesse Cotton <mailto:jcotton@ebay.com>
 #
-#
-# === Copyright
-#
-# Copyright 2013 EvenUp.
-#
 class disk (
   $fail_on_missing_device = $::disk::params::fail_on_missing_device,
   $persist_file           = $::disk::params::persist_file,

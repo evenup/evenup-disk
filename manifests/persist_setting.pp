@@ -26,16 +26,11 @@
 #
 # * Jesse Cotton <mailto:jcotton@ebay.com>
 #
-#
-# === Copyright
-#
-# Copyright 2013 EvenUp.
-#
 define disk::persist_setting (
-  $command        = undef,
-  $match          = undef,
-  $path           = [ '/bin', '/usr/bin', '/sbin' ],
-  $persist_file   = '/etc/rc.local'
+  $command      = undef,
+  $match        = undef,
+  $path         = [ '/bin', '/usr/bin', '/sbin' ],
+  $persist_file = '/etc/rc.local'
 ) {
 
   validate_string($command)
