@@ -27,12 +27,8 @@
 # * Jesse Cotton <mailto:jcotton@ebay.com>
 #
 #
-# === Copyright
-#
-# Copyright 2013 EvenUp.
-#
 define disk::scheduler (
-  $scheduler              = 'noop'
+  $scheduler = 'noop'
 ) {
 
   include ::disk
@@ -49,7 +45,7 @@ define disk::scheduler (
       "test -d /sys/block/${name}",
       "echo ${scheduler} > /sys/block/${name}/queue/scheduler"
     ], ' && ')
-    
+
     disk::persist_setting { "disk_scheduler_for_${name}":
       command      => $maybe_set_scheduler,
       path         => $::disk::bin_path,

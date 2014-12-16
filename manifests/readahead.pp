@@ -25,12 +25,8 @@
 # * Jesse Cotton <mailto:jcotton@ebay.com>
 #
 #
-# === Copyright
-#
-# Copyright 2013 EvenUp.
-#
 define disk::readahead (
-  $readahead  = 2048
+  $readahead = 2048
 ) {
 
   include ::disk
@@ -51,7 +47,7 @@ define disk::readahead (
       "test -d /sys/block/${name}",
       "blockdev --setra ${readahead} /dev/${name}"
     ], ' && ')
-    
+
     disk::persist_setting { "disk_readahead_for_${name}":
       command      => $maybe_set_readahead,
       path         => $::disk::bin_path,
