@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe 'disk::scheduler', :type => :define do
   let(:params) { { :scheduler => 'cfq' } }
+  let(:pre_condition) { 'include disk '}
 
   context 'single device' do
     let(:facts) { { :blockdevices => 'xvde1' } }

@@ -29,10 +29,12 @@ define disk::readahead (
   $readahead = 2048
 ) {
 
-  include ::disk
+  if ! defined(Class['disk']) {
+    fail('You must include the disk base class before using any disk defined resources')
+  }
 
   if ! is_integer($readahead) {
-    fail("Readahead value ${readahead} should be an integer")
+    fail("[Disk::Readahead::${name}]: Readahead value ${readahead} should be an integer")
   }
 
   $has_device = inline_template("<%= '${::blockdevices}'.split(',').include?('${name}') %>")
@@ -52,12 +54,12 @@ define disk::readahead (
       command      => $maybe_set_readahead,
       path         => $::disk::bin_path,
       match        => "blockdev\\s--setra\\s[0-9]+\\s/dev/${name}",
-      persist_file => $::disk::persist_file
-    } ~>
+    }
+
     exec { "disk_readahead_for_${name}":
-      command     => $maybe_set_readahead,
-      path        => $::disk::bin_path,
-      refreshonly => true
+      command => $maybe_set_readahead,
+      path    => $::disk::bin_path,
+      unless  => "blockdev --getra /dev/${name} | grep -q $readahead"
     }
 
   }

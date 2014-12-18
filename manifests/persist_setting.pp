@@ -24,14 +24,19 @@
 #
 # === Authors
 #
+# * Justin Lambert <mailto:jlambert@letsevenup.com>
 # * Jesse Cotton <mailto:jcotton@ebay.com>
 #
 define disk::persist_setting (
   $command      = undef,
   $match        = undef,
-  $path         = [ '/bin', '/usr/bin', '/sbin' ],
-  $persist_file = '/etc/rc.local'
+  $path         = $::disk::bin_path,
+  $persist_file = $::disk::persist_file,
 ) {
+
+  if ! defined(Class['disk']) {
+    fail('You must include the disk base class before using any disk defined resources')
+  }
 
   validate_string($command)
   validate_absolute_path($persist_file)
