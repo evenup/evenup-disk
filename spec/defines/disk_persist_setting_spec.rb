@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe 'disk::persist_setting', :type => :define do
   let(:title) { 'test' }
+  let(:pre_condition) { 'include disk '}
   let(:params) {
     {
       :path         => [ "/bin", "/usr/bin", "/sbin" ],
@@ -21,8 +22,8 @@ describe 'disk::persist_setting', :type => :define do
   end
 
   context 'with a match' do
-    let(:params) { 
-      { 
+    let(:params) {
+      {
         :command => "echo noop > /sys/block/sda/queue/scheduler",
         :match   => "/sys/block/sda/queue/scheduler"
       }
@@ -34,7 +35,7 @@ describe 'disk::persist_setting', :type => :define do
           'path'  => "/etc/rc.local"
       })
     }
-  end 
+  end
 
 end
 

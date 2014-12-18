@@ -1,8 +1,0 @@
-name 'evenup-disk'
-version '0.4.0'
-author 'Justin Lambert <jlambert@letsevenup.com>'
-license 'Apache'
-summary 'Configures disk parameters'
-description 'Configures disk parameters on Linux systems'
-source 'https://github.com/evenup/evenup-disk'
-dependency 'puppetlabs/stdlib'

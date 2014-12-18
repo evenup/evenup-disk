@@ -31,7 +31,9 @@ define disk::scheduler (
   $scheduler = 'noop'
 ) {
 
-  include ::disk
+  if ! defined(Class['disk']) {
+    fail('You must include the disk base class before using any disk defined resources')
+  }
 
   $has_device = inline_template("<%= '${::blockdevices}'.split(',').include?('${name}') %>")
 
@@ -50,12 +52,12 @@ define disk::scheduler (
       command      => $maybe_set_scheduler,
       path         => $::disk::bin_path,
       match        => "/sys/block/${name}/queue/scheduler",
-      persist_file => $::disk::persist_file,
-    } ~>
+    }
+
     exec { "disk_scheduler_for_${name}":
-      command     => $maybe_set_scheduler,
-      path        => $::disk::bin_path,
-      refreshonly => true
+      command => $maybe_set_scheduler,
+      path    => $::disk::bin_path,
+      unless  => "grep -q '\\[$scheduler\\]' /sys/block/${name}/queue/scheduler"
     }
 
   }

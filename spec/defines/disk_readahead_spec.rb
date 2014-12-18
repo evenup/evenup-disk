@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe 'disk::readahead', :type => :define do
   let(:params) { { :readahead => 2048 } }
+  let(:pre_condition) { 'include disk '}
 
   context 'single device' do
     let(:facts) { { :blockdevices => 'xvde' } }
