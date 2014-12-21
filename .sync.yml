@@ -1,7 +1,7 @@
 ---
   .travis.yml:
-    hc_secure: "KKVul4cqvyqAy6kW3zYuRymS/ESbRcqbJo/LYg1G1FOTOsAQCRvhnHFf9KJ088W9vWkQTulHiGzYvPJPB7agp4MFsDaphxk3DXFoDq8gnYd4ih2HgpzAD5YP5SsXT1ssjSiivh4s+zYPQnptUupVi7Gfm+tBX/TvT8tpOzOnlRU="
-  spec/acceptance/nodesets/ubuntu-server-1204-x64.yml
+    hc_secure: "fuwJeg0BIQG5YwwdbDfK00WGZxg9ZHLvWbqkhZdGQajF2scy8I+e/z5huPMOhhOMJf8WfubVyJ1Bo1lVOvYi4Y0ZtfMEZT4P+9wjnugYhyRa++rdD+rAGKfpoHI8gzOQU6I0a7OApVEDx35bpRidBG4Nx0xbaxyGsakRieMxMIc="
+  spec/acceptance/nodesets/ubuntu-server-1204-x64.yml:
     delete: true
-  spec/acceptance/nodesets/ubuntu-server-1404-x64.yml
-    delete:true
+  spec/acceptance/nodesets/ubuntu-server-1404-x64.yml:
+    delete: true
