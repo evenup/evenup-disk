@@ -1,8 +1,8 @@
 {
   "name": "evenup-disk",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "author": "Justin Lambert <jlambert@letsevenup.com>",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "summary": "Configures disk parameters",
   "source": "https://github.com/evenup/evenup-disk",
   "project_page": "https://github.com/evenup/evenup-disk",
