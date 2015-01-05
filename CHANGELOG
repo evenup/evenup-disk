@@ -1,3 +1,5 @@
+20150105 v0.5.0
+  Add acceptance testing
 20141110 v0.4.0
   Escape backslashes (idleyoungman)
   Add disk scheduling persistence (JCotton1123)
