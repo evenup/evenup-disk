@@ -39,27 +39,26 @@ define disk::readahead (
 
   $has_device = inline_template("<%= '${::blockdevices}'.split(',').include?('${name}') %>")
 
-  if $has_device == 'false' and $::disk::fail_on_missing_device {
+  if str2bool($has_device) == false and $::disk::fail_on_missing_device {
     fail("Device ${name} does not exist")
   }
 
-  if $has_device == 'true' {
-
+  if str2bool($has_device) == true {
     $maybe_set_readahead = join([
       "test -d /sys/block/${name}",
       "blockdev --setra ${readahead} /dev/${name}"
     ], ' && ')
 
     disk::persist_setting { "disk_readahead_for_${name}":
-      command      => $maybe_set_readahead,
-      path         => $::disk::bin_path,
-      match        => "blockdev\\s--setra\\s[0-9]+\\s/dev/${name}",
+      command => $maybe_set_readahead,
+      path    => $::disk::bin_path,
+      match   => "blockdev\\s--setra\\s[0-9]+\\s/dev/${name}",
     }
 
     exec { "disk_readahead_for_${name}":
       command => $maybe_set_readahead,
       path    => $::disk::bin_path,
-      unless  => "blockdev --getra /dev/${name} | grep -q $readahead"
+      unless  => "blockdev --getra /dev/${name} | grep -q ${readahead}"
     }
 
   }

@@ -37,27 +37,26 @@ define disk::scheduler (
 
   $has_device = inline_template("<%= '${::blockdevices}'.split(',').include?('${name}') %>")
 
-  if $has_device == 'false' and $::disk::fail_on_missing_device {
+  if str2bool($has_device) == false and $::disk::fail_on_missing_device {
     fail("Device ${name} does not exist")
   }
 
-  if $has_device == 'true' {
-
+  if str2bool($has_device) == true {
     $maybe_set_scheduler = join([
       "test -d /sys/block/${name}",
       "echo ${scheduler} > /sys/block/${name}/queue/scheduler"
     ], ' && ')
 
     disk::persist_setting { "disk_scheduler_for_${name}":
-      command      => $maybe_set_scheduler,
-      path         => $::disk::bin_path,
-      match        => "/sys/block/${name}/queue/scheduler",
+      command => $maybe_set_scheduler,
+      path    => $::disk::bin_path,
+      match   => "/sys/block/${name}/queue/scheduler",
     }
 
     exec { "disk_scheduler_for_${name}":
       command => $maybe_set_scheduler,
       path    => $::disk::bin_path,
-      unless  => "grep -q '\\[$scheduler\\]' /sys/block/${name}/queue/scheduler"
+      unless  => "grep -q '\\[${scheduler}\\]' /sys/block/${name}/queue/scheduler"
     }
 
   }
