@@ -60,6 +60,6 @@ define disk::persist_setting (
   file_line { $name:
     path  => $persist_file,
     line  => $_command,
-    match => $_match
+    match => $_match,
   }
 }
