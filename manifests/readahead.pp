@@ -46,7 +46,7 @@ define disk::readahead (
   if str2bool($has_device) == true {
     $maybe_set_readahead = join([
       "test -d /sys/block/${name}",
-      "blockdev --setra ${readahead} /dev/${name}"
+      "blockdev --setra ${readahead} /dev/${name}",
     ], ' && ')
 
     disk::persist_setting { "disk_readahead_for_${name}":
@@ -58,7 +58,7 @@ define disk::readahead (
     exec { "disk_readahead_for_${name}":
       command => $maybe_set_readahead,
       path    => $::disk::bin_path,
-      unless  => "blockdev --getra /dev/${name} | grep -q ${readahead}"
+      unless  => "blockdev --getra /dev/${name} | grep -q ${readahead}",
     }
 
   }
