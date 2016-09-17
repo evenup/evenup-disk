@@ -23,7 +23,7 @@ describe 'disk tuning' do
     end
 
     describe file('/sys/block/sda/queue/rotational') do
-      its(:content) { should equal 0 }
+      its(:content) { should eql "0\n" }
     end
 
   end

@@ -56,7 +56,7 @@ define disk::rotational (
     exec { "disk_rotational_for_${name}":
       command => $maybe_set_rotational,
       path    => $::disk::bin_path,
-      unless  => "grep -q '\\[${rotational_value}\\]' /sys/block/${name}/queue/rotational",
+      unless  => "grep -q '${rotational_value}' /sys/block/${name}/queue/rotational",
     }
 
   }
