@@ -46,4 +46,9 @@ class disk (
       ensure => $hdparm_package_ensure,
     }
   }
+
+  # CentOS 7 requires this file be executable
+  file { $persist_file:
+    mode   => '0755',
+  }
 }
