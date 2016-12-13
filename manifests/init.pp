@@ -11,7 +11,7 @@
 #
 # [*persist_file*]
 #   String.  Where to write commands to persist non-persistent settings
-#   Default: /etc/rc.local
+#   Default: /etc/rc.d/rc.local
 #
 # [*bin_path*]
 #   Array|String.  ???
@@ -20,7 +20,7 @@
 #
 #   class { disk':
 #     fail_on_missing_device => true,
-#     persist_file           => '/etc/rc.local',
+#     persist_file           => '/etc/rc.d/rc.local',
 #     bin_path               => ["/bin", "/usr/bin", "/sbin"]
 #   }
 #

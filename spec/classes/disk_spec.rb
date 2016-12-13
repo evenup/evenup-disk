@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'disk', :type => :class do
   context 'should compile without errors' do
     it { is_expected.to compile.with_all_deps }
-    it { is_expected.to contain_file('/etc/rc.local').with_mode('0755') }
+    it { is_expected.to contain_file('/etc/rc.d/rc.local').with_mode('0755') }
   end
 
   context 'hdparm' do

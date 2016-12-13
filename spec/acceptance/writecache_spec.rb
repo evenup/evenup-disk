@@ -29,7 +29,7 @@ describe 'disk tuning' do
       # expect(cache_status.output.chomp.to_i).to eq 0
 
       # Verify persistent settings
-      rc_local_content = shell('cat /etc/rc.local') 
+      rc_local_content = shell('cat /etc/rc.d/rc.local') 
       expect(rc_local_content.output).to match /hdparm -W0 \/dev\/sda/
     end
   end

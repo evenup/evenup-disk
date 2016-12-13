@@ -15,7 +15,7 @@ Configure some defaults:
 
 ```puppet
 class { 'disk':
-  persist_file  => "/etc/rc.local"
+  persist_file  => "/etc/rc.d/rc.local"
 }
 ```
 
