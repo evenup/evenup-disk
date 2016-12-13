@@ -33,9 +33,17 @@
 class disk (
   $fail_on_missing_device = $::disk::params::fail_on_missing_device,
   $persist_file           = $::disk::params::persist_file,
-  $bin_path               = $::disk::params::bin_path
+  $bin_path               = $::disk::params::bin_path,
+  $hdparm_package_name    = $::disk::params::hdparm_package_name,
+  $hdparm_package_ensure  = $::disk::params::hdparm_package_ensure,
 ) inherits disk::params {
 
   validate_bool($fail_on_missing_device)
   validate_absolute_path($persist_file)
+
+  unless defined(Package[$hdparm_package_name]) {
+    package { $hdparm_package_name:
+      ensure => $hdparm_package_ensure,
+    }
+  }
 }

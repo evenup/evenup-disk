@@ -14,5 +14,7 @@ class disk::params {
   $fail_on_missing_device = false
   $persist_file           = '/etc/rc.local'
   $bin_path               = ['/bin', '/usr/bin', '/sbin']
-
+  
+  $hdparm_package_name    = 'hdparm'
+  $hdparm_package_ensure  = 'present'
 }
