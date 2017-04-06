@@ -40,23 +40,21 @@ define disk::writecache (
     fail("Device ${name} does not exist")
   }
 
-  if str2bool($has_device) {
-    $writecache_value = bool2num($writecache)
-    $set_writecache_cmd = "hdparm -W${writecache_value} /dev/${name}"
-    $set_writecache_match = "hdparm -W[0,1] /dev/${name}"
+  $writecache_value = bool2num($writecache)
+  $set_writecache_cmd = "hdparm -W${writecache_value} /dev/${name}"
+  $set_writecache_match = "hdparm -W[0,1] /dev/${name}"
 
-    disk::persist_setting { "disk_writecache_for_${name}":
-      command => $set_writecache_cmd,
-      path    => $::disk::bin_path,
-      match   => $set_writecache_match,
-      require => Package[$::disk::hdparm_package_name],
-    }
+  disk::persist_setting { "disk_writecache_for_${name}":
+    command => $set_writecache_cmd,
+    path    => $::disk::bin_path,
+    match   => $set_writecache_match,
+    require => Package[$::disk::hdparm_package_name],
+  }
 
-    exec { "disk_writecache_for_${name}":
-      command => $set_writecache_cmd,
-      path    => $::disk::bin_path,
-      unless  => "hdparm -W /dev/${name} | grep write-caching | grep ${writecache_value}",
-      require => Package[$::disk::hdparm_package_name],
-    }
+  exec { "disk_writecache_for_${name}":
+    command => $set_writecache_cmd,
+    path    => $::disk::bin_path,
+    unless  => "hdparm -W /dev/${name} | grep write-caching | grep ${writecache_value}",
+    require => Package[$::disk::hdparm_package_name],
   }
 }

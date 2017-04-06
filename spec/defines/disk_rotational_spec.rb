@@ -34,8 +34,8 @@ describe 'disk::rotational', :type => :define do
 
       context 'set fail_on_missing_device false' do
         let(:pre_condition) { 'class { disk: fail_on_missing_device => false }' }
-        it { should_not contain_exec('disk_rotational_for_sda') }
-        it { should_not contain_disk__persist_setting('disk_rotational_for_sda') }
+        it { should contain_exec('disk_rotational_for_sda') }
+        it { should contain_disk__persist_setting('disk_rotational_for_sda') }
       end
 
       context 'set fail_on_missing_device true' do
@@ -43,6 +43,7 @@ describe 'disk::rotational', :type => :define do
         it {
           expect {
             should_not contain_exec('disk_rotational_for_sda')
+            should_not contain_disk__persist_setting('disk_rotational_for_sda')
           }.to raise_error(Puppet::Error, /Device sda does not exist/)
         }
       end
@@ -60,9 +61,14 @@ describe 'disk::rotational', :type => :define do
     end
 
     context 'invalid device' do
+      let(:pre_condition) { 'class { disk: fail_on_missing_device => true }' }
       let(:title) { 'sda' }
-      it { should_not contain_exec('disk_rotational_for_sda') }
-      it { should_not contain_disk__persist_setting('disk_rotational_for_sda') }
+      it {
+        expect {
+          should_not contain_exec('disk_rotational_for_sda')
+          should_not contain_disk__persist_setting('disk_rotational_for_sda')
+        }.to raise_error(Puppet::Error, /Device sda does not exist/)
+      }
     end
   end
 
