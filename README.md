@@ -15,7 +15,7 @@ Configure some defaults:
 
 ```puppet
 class { 'disk':
-  persist_file  => "/etc/rc.local"
+  persist_file  => "/etc/rc.d/rc.local"
 }
 ```
 
@@ -27,6 +27,11 @@ disk::scheduler { 'xvde1': scheduler => 'deadline' }
 Configure xvde1 with a readahead:
 ```puppet
 disk::readahead { 'xvde1': readahead => 2048 }
+```
+
+Configure xvde1 with a rotational:
+```puppet
+disk::rotational { 'xvde1': rotational => true }
 ```
 
 Known Issues:

@@ -2,7 +2,7 @@ fixtures:
   forge_modules:
     stdlib:
       repo: "puppetlabs/stdlib"
-      ref: "3.2.0"
+      ref: "3.2.1"
   symlinks:
     disk: "#{source_dir}"
 

@@ -19,7 +19,7 @@
 #
 # [*persist_file*]
 #   String.  Path to a file where the command will become persisted
-#   Default: /etc/rc.local
+#   Default: /etc/rc.d/rc.local
 #
 #
 # === Authors

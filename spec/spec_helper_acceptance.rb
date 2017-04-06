@@ -5,9 +5,6 @@ unless ENV['BEAKER_provision'] == 'no'
   hosts.each do |host|
     install_puppet
   end
-
-  hosts.each do |host|
-  end
 end
 
 RSpec.configure do |c|

@@ -6,7 +6,7 @@ describe 'disk::persist_setting', :type => :define do
   let(:params) {
     {
       :path         => [ "/bin", "/usr/bin", "/sbin" ],
-      :persist_file => "/etc/rc.local"
+      :persist_file => "/etc/rc.d/rc.local"
     }
   }
 
@@ -16,7 +16,7 @@ describe 'disk::persist_setting', :type => :define do
       should contain_file_line('test').with({
           'line'  => "PATH=/bin:/usr/bin:/sbin false",
           'match' => "^PATH=/bin:/usr/bin:/sbin false",
-          'path'  => "/etc/rc.local"
+          'path'  => "/etc/rc.d/rc.local"
       })
     }
   end
@@ -32,7 +32,7 @@ describe 'disk::persist_setting', :type => :define do
       should contain_file_line('test').with({
           'line'  => "PATH=/bin:/usr/bin:/sbin echo noop > /sys/block/sda/queue/scheduler",
           'match' => "/sys/block/sda/queue/scheduler",
-          'path'  => "/etc/rc.local"
+          'path'  => "/etc/rc.d/rc.local"
       })
     }
   end
